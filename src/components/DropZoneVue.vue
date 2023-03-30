@@ -47,7 +47,7 @@ onUnmounted(() => {
     @drop.prevent="onDrop"
   >
     <slot></slot>
-    <div class="test"></div>
+
     <div class="overlay">
       <div class="tip">將檔案拖放到這裡進行新增</div>
     </div>
@@ -62,7 +62,7 @@ onUnmounted(() => {
 
   &.drop {
     .overlay {
-      pointer-events: all;
+      pointer-events: none;
       opacity: 1;
       .tip {
         display: block;
@@ -71,14 +71,17 @@ onUnmounted(() => {
   }
 
   .overlay {
+    --background: rgba(0, 0, 0, 0.5);
+    --box-shadow: 0 0 0 5px rgba(0, 114, 239, 1) inset;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
+    background: var(--background);
+    box-shadow: var(--box-shadow);
     pointer-events: none;
+    opacity: 0;
     .tip {
       --background: rgba(0, 114, 239, 1);
       --color: white;
@@ -98,7 +101,7 @@ onUnmounted(() => {
 }
 
 @keyframes drop-tip {
-  $move: 500%;
+  $move: 100%;
   0% {
     transform: translateY(0) translateX(-50%);
   }
@@ -111,14 +114,4 @@ onUnmounted(() => {
 }
 </style>
 
-<style lang="scss" scoped>
-.test {
-  width: 500px;
-  height: 300px;
-  background-color: red;
-  float: right;
-  &:hover {
-    background-color: blue;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
